@@ -3,7 +3,7 @@ class ListnerController < ApplicationController
 	def event_triggered	
 		@secret = ENV.fetch('WHS', 'test secret')
 		got_challenge = Base64.encode64(OpenSSL::HMAC.digest(OpenSSL::Digest.new('sha256'), @secret, params['challenge'])).gsub("\n",'').strip()
-		response.headers['X-OUTBOUND-TOKEN'] = @secret
+		response.headers['X-OUTBOUND-TOKEN'] = got_challenge
 		
 		# render :json =>  {status: 200, type: 'verification', @secret}
 		# {"type":"verification","challenge":"xxx"}
