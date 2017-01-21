@@ -2,6 +2,7 @@ require 'json'
 class ListnerController < ApplicationController
 	def event_triggered	
 		@secret = ENV.fetch('WHS', 'test secret')
+		got_challenge = Base64.encode64(OpenSSL::HMAC.digest(OpenSSL::Digest.new('sha256'), @secret, params['challenge'])).gsub("\n",'').strip()
 		response.headers['X-OUTBOUND-TOKEN'] = @secret
 		
 		# render :json =>  {status: 200, type: 'verification', @secret}
@@ -9,7 +10,8 @@ class ListnerController < ApplicationController
 		# information = request.raw_post
 		# data_parsed = JSON.parse(information)
 		# raise response.body.inspect
-		render :json =>  params['challenge']
+
+		render :json =>  200
 	end
 
 end
