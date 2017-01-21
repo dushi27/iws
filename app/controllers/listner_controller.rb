@@ -9,7 +9,7 @@ class ListnerController < ApplicationController
 		# data_parsed = JSON.parse(information)
 		# raise response.body.inspect
 		raise params['challenge'].inspect
-		render :json =>  params['challenge']
+		render :json =>  params['challenge'].gsub("(").gsub(")")
 	end
 
 end
