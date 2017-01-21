@@ -14,7 +14,7 @@ class ListnerController < ApplicationController
 		# data_parsed = JSON.parse(information)
 		# raise response.body.inspect
 
-		render :json =>  200
+		render :json =>  {type: 'verification', challenge: params['challenge']}
 	end
 
 end
