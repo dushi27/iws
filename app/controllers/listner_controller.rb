@@ -8,6 +8,7 @@ class ListnerController < ApplicationController
 		# information = request.raw_post
 		# data_parsed = JSON.parse(information)
 		# raise response.body.inspect
+		raise params['challenge'].inspect
 		render :json =>  params['challenge']
 	end
 
