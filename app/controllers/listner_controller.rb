@@ -5,8 +5,7 @@ class ListnerController < ApplicationController
 		message = {response: params['challenge']}
 
 		got_challenge = OpenSSL::HMAC.hexdigest("SHA256", @secret, message.to_json) 
-		puts got_challenge
-		puts "******************"
+		puts response.body
 		response.headers['X-OUTBOUND-TOKEN'] = got_challenge
 
 
